@@ -20,5 +20,5 @@ elementStyle(document.body, 'paddingLeft')
 
 ```
 
-
-
+## License
+MIT
