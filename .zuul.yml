@@ -2,7 +2,7 @@ ui: mocha-bdd
 config:
   globals:
     - "getComputedStyle"
-concurrency: 1
+concurrency: 2
 tunnel:
   type: ngrok
   authtoken: 3xHC2jHvjwefzUV3UmtNt_2oFBA1dmECwX317WUq8z6
@@ -14,10 +14,10 @@ browsers:
     version: latest
   - name: chrome
     version: 26..dev
+  - name: firefox
+    version: 26..dev
   - name: safari
     version: 5..latest
-  - name: firefox
-    version: 4..dev
   - name: opera
     version: 11..latest
   - name: iphone
