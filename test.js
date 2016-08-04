@@ -1,20 +1,24 @@
+/* global describe, it */
+
 'use strict'
 
-var test = require('tape')
+var assert = require('assert')
+
 var elementStyle = require('./')
 
-test('element style', function (t) {
-  elementStyle(document.body, 'position', 'relative')
-  t.deepEqual(elementStyle(document.body, 'position'), document.body.style.position)
+describe('element style', function () {
+  var userAgent = window.navigator.userAgent
+  var ieDetected = (userAgent.indexOf('MSIE ') !== false || !!navigator.userAgent.match(/Trident.*rv\\:11\./))
 
-  elementStyle(document.body, 'width', '10000px')
-  t.deepEqual(elementStyle(document.body, 'width'), document.body.style.width)
+  if (global.mocha && ieDetected) {
+    global.mocha.globals(['getComputedStyle'])
+  }
 
-  elementStyle(document.body, 'height', '10000px')
-  t.deepEqual(elementStyle(document.body, 'height'), document.body.style.height)
+  it('setter', function () {
+    assert.equal(elementStyle(document.body, 'width', '10000px'), '10000px')
+  })
 
-  elementStyle(document.body, 'paddingLeft', '10000px')
-  t.deepEqual(elementStyle(document.body, 'paddingLeft'), document.body.style.paddingLeft)
-
-  t.end()
+  it('getter', function () {
+    assert.equal(elementStyle(document.body, 'width'), '10000px')
+  })
 })

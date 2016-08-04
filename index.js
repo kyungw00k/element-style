@@ -21,10 +21,11 @@ function elementStyle (element, name, value) {
   var doc = element.ownerDocument
   var win = doc.defaultView || doc.parentWindow
 
-  if (!win.getComputedStyle) {
-    win.getComputedStyle = function (el, pseudo) {
-      this.el = el
-      this.getPropertyValue = function (prop) {
+  if (typeof win.getComputedStyle === 'undefined') {
+    win['getComputedStyle'] = function (el, pseudo) {
+      var that = {}
+      that.el = el
+      that.getPropertyValue = function (prop) {
         var re = /(\-([a-z]){1})/g
 
         if (prop === 'float') {
@@ -39,7 +40,7 @@ function elementStyle (element, name, value) {
 
         return el.currentStyle[prop] ? el.currentStyle[prop] : null
       }
-      return this
+      return that
     }
   }
 

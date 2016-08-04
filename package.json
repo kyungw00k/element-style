@@ -1,11 +1,11 @@
 {
   "name": "element-style",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Gets/sets an element style property",
   "main": "index.js",
   "scripts": {
-    "prestart": "npm install",
-    "test": "./node_modules/.bin/standard && ./node_modules/.bin/browserify test.js | ./node_modules/.bin/testling | ./node_modules/.bin/coverify"
+    "test": "./node_modules/.bin/standard && ./node_modules/.bin/zuul -- test.js",
+    "test-local": "./node_modules/.bin/standard && ./node_modules/.bin/zuul --local 8080 -- test.js"
   },
   "repository": {
     "type": "git",
@@ -26,10 +26,9 @@
     "kebab-case": "^1.0.0"
   },
   "devDependencies": {
-    "browserify": "^13.0.1",
-    "coverify": "^1.4.1",
+    "mocha": "^2.5.3",
     "standard": "^7.1.2",
-    "tape": "^4.6.0",
-    "testling": "^1.7.1"
+    "zuul": "^3.10.3",
+    "zuul-ngrok": "^4.0.0"
   }
 }
